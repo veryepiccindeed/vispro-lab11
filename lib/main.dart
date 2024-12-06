@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'first_screen.dart';
 import 'second_screen.dart';
+import 'third_screen.dart'; // Impor ThirdScreen
 
 void main() => runApp(MyApp());
 
@@ -25,17 +26,22 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int currentPageIndex = 0;
 
-  // Method untuk menavigasi ke FirstScreen atau SecondScreen
+  // Method untuk menavigasi ke layar sesuai index
   void _goToScreen(int index) {
     if (index == 0) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => FirstScreen()), // Navigasi ke FirstScreen
       );
-    } else {
+    } else if (index == 1) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => SecondScreen()), // Navigasi ke SecondScreen
+      );
+    } else if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ThirdScreen()), // Navigasi ke ThirdScreen
       );
     }
   }
@@ -47,19 +53,18 @@ class _MainScreenState extends State<MainScreen> {
         title: Text('Navigation with Push and Pop'),
       ),
       body: Center(
-        child: currentPageIndex == 0
-            ? ElevatedButton(
-                onPressed: () {
-                  _goToScreen(0); // Masuk ke First Screen
-                },
-                child: Text('Go to First Screen'),
-              )
-            : ElevatedButton(
-                onPressed: () {
-                  _goToScreen(1); // Masuk ke Second Screen
-                },
-                child: Text('Go to Second Screen'),
-              ),
+        child: ElevatedButton(
+          onPressed: () {
+            _goToScreen(currentPageIndex); // Navigasi berdasarkan tab yang aktif
+          },
+          child: Text(
+            currentPageIndex == 0
+                ? 'Go to First Screen'
+                : currentPageIndex == 1
+                    ? 'Go to Second Screen'
+                    : 'Go to Third Screen',
+          ),
+        ),
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentPageIndex,
@@ -76,6 +81,10 @@ class _MainScreenState extends State<MainScreen> {
           NavigationDestination(
             icon: Icon(Icons.navigate_next),
             label: 'Second Screen',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.rocket_launch),
+            label: 'Third Screen',
           ),
         ],
       ),
