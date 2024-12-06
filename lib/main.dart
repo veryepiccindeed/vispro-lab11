@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'first_screen.dart';
 import 'second_screen.dart';
-import 'third_screen.dart'; // Impor ThirdScreen
+import 'third_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,11 +9,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Navigator with Push and Pop',
+      title: 'Navigator with Routes',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainScreen(), // MainScreen will be the first screen
+      routes: {
+        '/': (context) => MainScreen(),
+        '/first': (context) => FirstScreen(),
+        '/second': (context) => SecondScreen(),
+        '/third': (context) => ThirdScreen(),
+      },
+      initialRoute: '/', 
     );
   }
 }
@@ -26,25 +32,17 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int currentPageIndex = 0;
 
-  // Method untuk menavigasi ke layar sesuai index
+
   void _goToScreen(int index) {
     if (index == 0) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => FirstScreen()), // Navigasi ke FirstScreen
-      );
+      Navigator.pushNamed(context, '/first');
     } else if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => SecondScreen()), // Navigasi ke SecondScreen
-      );
+      Navigator.pushNamed(context, '/second'); 
     } else if (index == 2) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ThirdScreen()), // Navigasi ke ThirdScreen
-      );
+      Navigator.pushNamed(context, '/third'); 
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
