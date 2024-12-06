@@ -52,11 +52,11 @@ Pada aplikasi ini, pendekatan navigasi menggunakan Navigator.push dan Navigator.
 
 
 ## Tantangan 
-**1. Kesesuaian State dengan Tab Aktif**
+**1. Kesesuaian State dengan Tab Aktif:**
 Sinkronisasi currentPageIndex dengan elemen-elemen yang ditampilkan membutuhkan perencanaan yang tepat agar setiap tab menampilkan konten yang sesuai.
 
-**2. Navigasi Multi-Level**
+**2. Navigasi Multi-Level:**
 Pengelolaan tumpukan navigasi saat beralih antara layar yang berbeda melalui tombol dan kembali ke layar utama tanpa mengganggu pengalaman pengguna.
 
-**3. Ekspansi untuk Tab Tambahan**
+**3. Ekspansi untuk Tab Tambahan:**
 Menambahkan tab baru memerlukan pembaruan logika navigasi, khususnya dalam menjaga keselarasan antara currentPageIndex, tombol, dan layar yang dipanggil.
